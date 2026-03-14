@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wimpie & Shannon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ── RESET & VARIABLES ─────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ivory: #f9f5ef;
+      --cream: #f0e8dc;
+      --blush: #d4a5a5;
+      --sage: #8a9e8a;
+      --espresso: #3a2e2e;
+      --muted: #7a6e6e;
+      --gold: #b89a6a;
+      --white: #ffffff;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Jost', sans-serif;
+      --nav-h: 68px;
+      --trans: 0.35s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--ivory);
+      color: var(--espresso);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font: inherit;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(249, 245, 239, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(180, 155, 130, 0.18);
+      transition: box-shadow var(--trans);
+    }
+
+    nav.scrolled {
+      box-shadow: 0 2px 24px rgba(58, 46, 46, 0.08);
+    }
+
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--espresso);
+    }
+
+    /* Desktop links */
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color var(--trans);
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width var(--trans);
+    }
+
+    .nav-links a:hover {
+      color: var(--espresso);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Burger */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px;
+      padding: 4px 0;
+    }
+
+    .burger span {
+      display: block;
+      height: 1.5px;
+      background: var(--espresso);
+      transition: var(--trans);
+      transform-origin: center;
+    }
+
+    .burger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .burger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .burger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    /* Mobile drawer */
+    .mobile-menu {
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      background: var(--ivory);
+      border-bottom: 1px solid var(--cream);
+      padding: 1.5rem 2rem 2rem;
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      z-index: 999;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(180, 155, 130, 0.15);
+      transition: color var(--trans);
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--espresso);
+    }
+
+    /* ── PAGE WRAPPER ───────────────────────────────────────────── */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ── SECTION UTILITY ────────────────────────────────────────── */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-wide {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    .divider.center {
+      margin: 1.5rem auto;
+    }
+
+    /* ── ORNAMENT ───────────────────────────────────────────────── */
+    .ornament {
+      display: block;
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      margin: 2rem 0;
+      opacity: 0.6;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       Tuis PAGE
+    ════════════════════════════════════════════════════════════ */
+    .slideshow {
+      position: relative;
+      height: 100vh;
+      min-height: 580px;
+      overflow: hidden;
+      margin-top: var(--nav-h);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.72);
+    }
+
+    /* Placeholder slides (gradient) */
+    .slide-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-placeholder-1 {
+      background: linear-gradient(135deg, #8a9e8a 0%, #3a2e2e 100%);
+    }
+
+    .slide-placeholder-2 {
+      background: linear-gradient(135deg, #d4a5a5 0%, #8a6060 100%);
+    }
+
+    .slide-placeholder-3 {
+      background: linear-gradient(135deg, #b89a6a 0%, #3a2e2e 100%);
+    }
+
+    .slide-caption {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+      padding: 2rem;
+    }
+
+    .slide-caption .eyebrow {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1rem;
+    }
+
+    .slide-caption h1 {
+      font-style: italic;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 0.5rem;
+    }
+
+    .slide-caption .subtitle {
+      font-size: clamp(0.9rem, 2vw, 1.15rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.85);
+      margin-top: 0.5rem;
+    }
+
+    .slide-dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .slide-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: background var(--trans), transform var(--trans);
+    }
+
+    .slide-dot.active {
+      background: #fff;
+      transform: scale(1.3);
+    }
+
+    /* Date & Venue block */
+    .Tuis-details {
+      background: var(--cream);
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .Tuis-details .eyebrow {
+      text-align: center;
+      display: block;
+    }
+
+    .Tuis-details h2 {
+      margin-bottom: 0.25rem;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+      max-width: 700px;
+      margin: 2.5rem auto 0;
+    }
+
+    .detail-card .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-card p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    /* Tuis bottom nav */
+    .Tuis-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--cream);
+      border-top: 1px solid var(--cream);
+    }
+
+    .Tuis-nav-item {
+      background: var(--ivory);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: background var(--trans), transform var(--trans);
+      border: none;
+      width: 100%;
+    }
+
+    .Tuis-nav-item:hover {
+      background: var(--cream);
+    }
+
+    .Tuis-nav-item .icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .Tuis-nav-item .nav-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .Tuis-nav-item:hover .nav-label {
+      color: var(--espresso);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       Ons Storie
+    ════════════════════════════════════════════════════════════ */
+    .story-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 680px) {
+      .story-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    .story-img-wrap {
+      position: relative;
+    }
+
+    .story-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      right: 16px;
+      bottom: 16px;
+      border: 1px solid var(--gold);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .story-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, var(--cream), var(--blush) 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .story-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .story-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       Fotos
+    ════════════════════════════════════════════════════════════ */
+    .Fotos-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .photo-item {
+      position: relative;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .photo-placeholder-1 {
+      background: linear-gradient(120deg, #d4c5b5, #b89a6a);
+    }
+
+    .photo-placeholder-2 {
+      background: linear-gradient(120deg, #c5d4c5, #8a9e8a);
+    }
+
+    .photo-placeholder-3 {
+      background: linear-gradient(120deg, #d4b5b5, #d4a5a5);
+    }
+
+    .photo-placeholder-4 {
+      background: linear-gradient(120deg, #b5c5d4, #7a9a8a);
+    }
+
+    .photo-placeholder-5 {
+      background: linear-gradient(120deg, #d4c5a5, #b89a6a);
+    }
+
+    .photo-caption {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       Kleurskema
+    ════════════════════════════════════════════════════════════ */
+    .colour-hero {
+      margin-top: var(--nav-h);
+      height: 50vh;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .colour-hero-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--sage) 50%, var(--gold) 100%);
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .colour-hero-text {
+      padding: 2.5rem;
+      color: white;
+    }
+
+    .colour-hero-text .eyebrow {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .colour-hero-text h2 {
+      color: white;
+      margin-bottom: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    .colour-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .colour-section p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+
+    .swatch {
+      flex: 1;
+      min-width: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .swatch-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .swatch-name {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       Q&A
+    ════════════════════════════════════════════════════════════ */
+    .qa-list {
+      list-style: none;
+    }
+
+    .qa-item {
+      border-bottom: 1px solid rgba(180, 155, 130, 0.25);
+    }
+
+    .qa-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 0;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      text-align: left;
+      color: var(--espresso);
+      cursor: pointer;
+      gap: 1rem;
+    }
+
+    .qa-question:hover {
+      color: var(--gold);
+    }
+
+    .qa-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: transform var(--trans), background var(--trans), color var(--trans);
+    }
+
+    .qa-item.open .qa-icon {
+      transform: rotate(45deg);
+      background: var(--espresso);
+      color: var(--ivory);
+      border-color: var(--espresso);
+    }
+
+    .qa-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+
+    .qa-answer-inner {
+      padding-bottom: 1.5rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .qa-item.open .qa-answer {
+      max-height: 400px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       Geskenk Register
+    ════════════════════════════════════════════════════════════ */
+    .gift-intro {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gift-card {
+      background: var(--white);
+      border: 1px solid rgba(180, 155, 130, 0.2);
+      padding: 1.75rem;
+      transition: box-shadow var(--trans), transform var(--trans);
+    }
+
+    .gift-card:hover {
+      box-shadow: 0 8px 32px rgba(58, 46, 46, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .gift-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .gift-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .gift-card .gift-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .gift-price {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    .gift-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border: 1px solid var(--sage);
+      color: var(--sage);
+      margin-top: 0.75rem;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RSVP
+    ════════════════════════════════════════════════════════════ */
+    .rsvp-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .rsvp-intro {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    /* Lookup step */
+    /* #rsvp-lookup, #rsvp-form-step, #rsvp-confirmation { } */
+    .hidden {
+      display: none !important;
+    }
+
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--espresso);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(180, 155, 130, 0.35);
+      background: var(--white);
+      color: var(--espresso);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color var(--trans);
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .rsvp-radio-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .rsvp-radio {
+      flex: 1;
+      min-width: 120px;
+      position: relative;
+    }
+
+    .rsvp-radio input {
+      display: none;
+    }
+
+    .rsvp-radio label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(180, 155, 130, 0.35);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all var(--trans);
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .rsvp-radio input:checked+label {
+      background: var(--espresso);
+      color: var(--ivory);
+      border-color: var(--espresso);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: var(--espresso);
+      color: var(--ivory);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid var(--espresso);
+      cursor: pointer;
+      transition: all var(--trans);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--espresso);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      background: transparent;
+      color: var(--espresso);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(58, 46, 46, 0.3);
+      cursor: pointer;
+      transition: all var(--trans);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--espresso);
+    }
+
+    .rsvp-error {
+      color: #c0504d;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .rsvp-error.show {
+      display: block;
+    }
+
+    /* Plus one box */
+    #plus-one-block {
+      background: var(--cream);
+      padding: 1.5rem;
+      margin-top: 0.5rem;
+      border-left: 3px solid var(--gold);
+    }
+
+    #plus-one-block .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Confirmation */
+    #rsvp-confirmation {
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    #rsvp-confirmation .confirm-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #rsvp-confirmation h2 {
+      margin-bottom: 1rem;
+    }
+
+    #rsvp-confirmation p {
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--espresso);
+      color: rgba(249, 245, 239, 0.5);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+    }
+
+    footer .footer-brand {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--ivory);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .section,
+      .section-wide {
+        padding: 3.5rem 1.5rem;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-menu {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ NAVBAR ═════════════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <span class="nav-brand">Wimpie &amp; Shannon</span>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('Tuis')">Tuis</a></li>
+      <li><a href="#" onclick="showPage('story')">Ons Storie</a></li>
+      <li><a href="#" onclick="showPage('Fotos')">Fotos</a></li>
+      <li><a href="#" onclick="showPage('colours')">Kleurskema</a></li>
+      <li><a href="#" onclick="showPage('qa')">Q&amp;A</a></li>
+      <li><a href="#" onclick="showPage('gifts')">Geskenk Register</a></li>
+      <li><a href="#" onclick="showPage('rsvp')">RSVP</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#" onclick="showPage('Tuis');closeMobile()">Tuis</a>
+    <a href="#" onclick="showPage('story');closeMobile()">Ons Storie</a>
+    <a href="#" onclick="showPage('Fotos');closeMobile()">Fotos</a>
+    <a href="#" onclick="showPage('colours');closeMobile()">Kleurskema</a>
+    <a href="#" onclick="showPage('qa');closeMobile()">Q&amp;A</a>
+    <a href="#" onclick="showPage('gifts');closeMobile()">Geskenk Register</a>
+    <a href="#" onclick="showPage('rsvp');closeMobile()">RSVP</a>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       Tuis PAGE
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="page active" id="page-Tuis">
+
+    <!-- Slideshow -->
+    <div class="slideshow" style="margin-top:var(--nav-h)">
+      <div class="slide active">
+        <!-- Replace <div class="slide-placeholder"> with <img class="slide-img" src="your-photo.jpg" alt=""> -->
+        <div class="slide-placeholder slide-placeholder-1"></div>
+      </div>
+      <div class="slide">
+        <div class="slide-placeholder slide-placeholder-2"></div>
+      </div>
+      <div class="slide">
+        <div class="slide-placeholder slide-placeholder-3"></div>
+      </div>
+
+      <div class="slide-caption">
+        <p class="eyebrow">Ons Trou!</p>
+        <h1>Wimpie &amp; Shannon</h1>
+        <p class="subtitle">19 Desember 2026 &nbsp;·&nbsp; Riebeek-Kasteel</p>
+      </div>
+
+      <div class="slide-dots">
+        <div class="slide-dot active" onclick="goToSlide(0)"></div>
+        <div class="slide-dot" onclick="goToSlide(1)"></div>
+        <div class="slide-dot" onclick="goToSlide(2)"></div>
+      </div>
+    </div>
+
+    <!-- Date & Venue -->
+    <div class="Tuis-details">
+      <p class="eyebrow">Save the date</p>
+      <h2 style="font-style:italic;">The Details</h2>
+      <div class="divider center"></div>
+      <div class="details-grid">
+        <div class="detail-card">
+          <p class="label">Date</p>
+          <p>Saturday, 14 June 2026</p>
+        </div>
+        <div class="detail-card">
+          <p class="label">Ceremony</p>
+          <p>3:00 PM</p>
+        </div>
+        <div class="detail-card">
+          <p class="label">Venue</p>
+          <p>The Grand Hall<br>Constantia, Cape Town</p>
+        </div>
+        <div class="detail-card">
+          <p class="label">Reception</p>
+          <p>To follow at<br>the same venue</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom nav to other pages -->
+    <div class="Tuis-nav-grid">
+      <button class="Tuis-nav-item" onclick="showPage('story')">
+        <span class="icon">💛</span>
+        <span class="nav-label">Ons Storie</span>
+      </button>
+      <button class="Tuis-nav-item" onclick="showPage('Fotos')">
+        <span class="icon">📷</span>
+        <span class="nav-label">Fotos</span>
+      </button>
+      <button class="Tuis-nav-item" onclick="showPage('colours')">
+        <span class="icon">🎨</span>
+        <span class="nav-label">Kleurskema</span>
+      </button>
+      <button class="Tuis-nav-item" onclick="showPage('qa')">
+        <span class="icon">💬</span>
+        <span class="nav-label">Q &amp; A</span>
+      </button>
+      <button class="Tuis-nav-item" onclick="showPage('gifts')">
+        <span class="icon">🎁</span>
+        <span class="nav-label">Geskenk Register</span>
+      </button>
+      <button class="Tuis-nav-item" onclick="showPage('rsvp')">
+        <span class="icon">✉️</span>
+        <span class="nav-label">RSVP</span>
+      </button>
+    </div>
+
+    <footer>
+      <span class="footer-brand">Wimpie &amp; Shannon</span>
+      14 June 2026 &nbsp;·&nbsp; Cape Town
+    </footer>
+  </div><!-- /Tuis -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       Ons Storie
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-story">
+    <div style="height:var(--nav-h)"></div>
+    <div class="section">
+      <p class="eyebrow">How it began</p>
+      <h2 style="font-style:italic;">Ons Storie</h2>
+      <div class="divider"></div>
+
+      <div class="story-layout">
+        <div class="story-img-wrap">
+          <!-- Replace with: <img src="your-couple-photo.jpg" alt="James and Emily"> -->
+          <div class="story-img-placeholder">Your photo here</div>
+        </div>
+        <div class="story-text">
+          <p>
+            It was a rainy Thursday evening at a mutual friend's dinner party when James and Emily first met. He was
+            late — she had already claimed the best seat. Their eyes met across a bowl of bread rolls and the rest, as
+            they say, is history.
+          </p>
+          <p>
+            Over the following months, long walks became longer conversations, coffee dates stretched into evenings, and
+            one perfectly ordinary Tuesday turned into the best day of their lives when James got down on one knee at
+            their favourite little beach cove.
+          </p>
+          <p>
+            Two years, one puppy, and approximately 400 shared meals later, they are ready to make it official in front
+            of everyone they love.
+          </p>
+          <span class="ornament">✦ ✦ ✦</span>
+          <p>
+            We can't wait to celebrate with you.
+          </p>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <span class="footer-brand">Wimpie &amp; Shannon</span>
+      14 June 2026 &nbsp;·&nbsp; Cape Town
+    </footer>
+  </div><!-- /story -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       Fotos
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-Fotos">
+    <div style="height:var(--nav-h)"></div>
+    <div style="max-width:700px;margin:0 auto;padding:4rem 2rem 1rem;">
+      <p class="eyebrow">Memories</p>
+      <h2 style="font-style:italic;">Fotos</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="Fotos-stack">
+      <!-- Replace each .photo-placeholder with an <img src="..."> -->
+      <div class="photo-item">
+        <div class="photo-placeholder photo-placeholder-1">Photo 1 — Add your image here</div>
+        <p class="photo-caption">The day we met, 2023</p>
+      </div>
+      <div class="photo-item">
+        <div class="photo-placeholder photo-placeholder-2">Photo 2 — Add your image here</div>
+        <p class="photo-caption">Our first trip together</p>
+      </div>
+      <div class="photo-item">
+        <div class="photo-placeholder photo-placeholder-3">Photo 3 — Add your image here</div>
+        <p class="photo-caption">The proposal</p>
+      </div>
+      <div class="photo-item">
+        <div class="photo-placeholder photo-placeholder-4">Photo 4 — Add your image here</div>
+        <p class="photo-caption">Engagement shoot</p>
+      </div>
+      <div class="photo-item">
+        <div class="photo-placeholder photo-placeholder-5">Photo 5 — Add your image here</div>
+        <p class="photo-caption">Our favourite place</p>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-brand">Wimpie &amp; Shannon</span>
+      14 June 2026 &nbsp;·&nbsp; Cape Town
+    </footer>
+  </div><!-- /Fotos -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       Kleurskema
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-colours">
+    <div style="height:var(--nav-h)"></div>
+
+    <div class="colour-hero">
+      <!-- Replace with: <img src="your-colours-photo.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+      <div class="colour-hero-placeholder">
+        <div class="colour-hero-text">
+          <p class="eyebrow">Aesthetic</p>
+          <h2>Kleurskema</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="colour-section">
+      <p>
+        Our wedding palette was inspired by a late-autumn evening in the winelands — soft blushes fading into earthy
+        sages, all warmed by candlelight and golden hour glow. We wanted something that felt both romantic and grounded;
+        timeless without being fussy.
+      </p>
+      <p>
+        If you're choosing what to wear, we'd love to see you in any of these tones — or any soft, muted palette that
+        feels like you. Please avoid white and ivory out of respect for the bride.
+      </p>
+
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#d4a5a5;"></div>
+          <span class="swatch-name">Blush Rose</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#8a9e8a;"></div>
+          <span class="swatch-name">Sage Green</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#b89a6a;"></div>
+          <span class="swatch-name">Warm Gold</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#f0e8dc;"></div>
+          <span class="swatch-name">Champagne</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#3a2e2e; border:1px solid #f0e8dc;"></div>
+          <span class="swatch-name">Deep Espresso</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-brand">Wimpie &amp; Shannon</span>
+      14 June 2026 &nbsp;·&nbsp; Cape Town
+    </footer>
+  </div><!-- /colours -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       Q & A
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-qa">
+    <div style="height:var(--nav-h)"></div>
+    <div class="section">
+      <p class="eyebrow">Everything you need to know</p>
+      <h2 style="font-style:italic;">Questions &amp; Answers</h2>
+      <div class="divider"></div>
+
+      <ul class="qa-list" id="qa-list">
+        <li class="qa-item">
+          <button class="qa-question">
+            Is the venue child-friendly?
+            <span class="qa-icon">+</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              The ceremony and reception are adult-only events. We love your little ones, but we'd appreciate this being
+              a grown-ups evening. We're happy to recommend babysitting agencies in the area — just reach out!
+            </div>
+          </div>
+        </li>
+        <li class="qa-item">
+          <button class="qa-question">
+            Is there parking at the venue?
+            <span class="qa-icon">+</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              Yes, there is ample free parking on site. We do encourage carpooling and ask that you arrange a designated
+              driver or use a ride-hailing service if you plan to enjoy the open bar.
+            </div>
+          </div>
+        </li>
+        <li class="qa-item">
+          <button class="qa-question">
+            What's the dress code?
+            <span class="qa-icon">+</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              Smart / cocktail attire. We'd love guests to embrace the colour palette — blush, sage, gold, and champagne
+              are welcome. Please avoid white and ivory. The ceremony will be outdoors so keep an afternoon chill in
+              mind.
+            </div>
+          </div>
+        </li>
+        <li class="qa-item">
+          <button class="qa-question">
+            Will there be dietary options?
+            <span class="qa-icon">+</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              Absolutely. We'll have vegetarian, vegan, and gluten-free options throughout. Please note any dietary
+              requirements on your RSVP and we'll make sure you're looked after.
+            </div>
+          </div>
+        </li>
+        <li class="qa-item">
+          <button class="qa-question">
+            Can I take Fotos during the ceremony?
+            <span class="qa-icon">+</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              We're having an unplugged ceremony — so please put phones away and enjoy the moment with us. Our
+              photographer will capture everything beautifully. After the ceremony, snap away!
+            </div>
+          </div>
+        </li>
+        <li class="qa-item">
+          <button class="qa-question">
+            Is accommodation available nearby?
+            <span class="qa-icon">+</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              There are several lovely guesthouses and hotels within 10 minutes of the venue. We've put together a list
+              which we'll email to all guests — feel free to contact us in the meantime.
+            </div>
+          </div>
+        </li>
+        <li class="qa-item">
+          <button class="qa-question">
+            What time should I arrive?
+            <span class="qa-icon">+</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              Guests are welcome from 2:30 PM. The ceremony will begin promptly at 3:00 PM — we kindly ask that you're
+              seated at least 10 minutes before. Late arrivals may be asked to wait until the processional is complete.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <footer>
+      <span class="footer-brand">Wimpie &amp; Shannon</span>
+      14 June 2026 &nbsp;·&nbsp; Cape Town
+    </footer>
+  </div><!-- /qa -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       Geskenk Register
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-gifts">
+    <div style="height:var(--nav-h)"></div>
+    <div class="section-wide">
+      <p class="eyebrow">Geskenk Register</p>
+      <h2 style="font-style:italic;">Gifts</h2>
+      <div class="divider"></div>
+      <p class="gift-intro">
+        Your presence is the greatest gift of all. However, if you'd like to give something, here are a few ideas — or
+        feel free to contribute to our honeymoon fund.
+      </p>
+
+      <div class="gift-grid">
+        <div class="gift-card">
+          <div class="gift-icon">✈️</div>
+          <h3>Honeymoon Fund</h3>
+          <p class="gift-desc">Contribute to our dream trip to Italy and Greece. Every little bit helps make memories!
+          </p>
+          <div class="gift-price">Any amount</div>
+          <span class="gift-tag">Most Wanted</span>
+        </div>
+        <div class="gift-card">
+          <div class="gift-icon">🍽️</div>
+          <h3>Dining Experience</h3>
+          <p class="gift-desc">A voucher to a fine dining restaurant — we love good food and special occasions.</p>
+          <div class="gift-price">R 800 – R 2,000</div>
+        </div>
+        <div class="gift-card">
+          <div class="gift-icon">🛋️</div>
+          <h3>Le Creuset Set</h3>
+          <p class="gift-desc">The sage green cast-iron set from Le Creuset. Our dream kitchen addition.</p>
+          <div class="gift-price">R 3,500</div>
+        </div>
+        <div class="gift-card">
+          <div class="gift-icon">🌿</div>
+          <h3>Robot Vacuum</h3>
+          <p class="gift-desc">Practical, yes — but a Roomba is the gift that keeps on giving (especially with a dog).
+          </p>
+          <div class="gift-price">R 4,500</div>
+        </div>
+        <div class="gift-card">
+          <div class="gift-icon">📚</div>
+          <h3>Book Voucher</h3>
+          <p class="gift-desc">We both love to read. A voucher to Exclusive Books would be well-used.</p>
+          <div class="gift-price">R 500 – R 1,500</div>
+        </div>
+        <div class="gift-card">
+          <div class="gift-icon">🛁</div>
+          <h3>Luxury Towel Set</h3>
+          <p class="gift-desc">Egyptian cotton, 600 GSM, in ivory. The ones from Woolworths Tuis.</p>
+          <div class="gift-price">R 1,200</div>
+        </div>
+        <div class="gift-card">
+          <div class="gift-icon">🕯️</div>
+          <h3>Diptyque Candles</h3>
+          <p class="gift-desc">Baies and Figuier — our two favourites. A luxurious little indulgence.</p>
+          <div class="gift-price">R 600 – R 1,800</div>
+        </div>
+        <div class="gift-card">
+          <div class="gift-icon">🎭</div>
+          <h3>Experience Voucher</h3>
+          <p class="gift-desc">Concerts, theatre, wine tastings — we love experiences over things.</p>
+          <div class="gift-price">Any amount</div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <span class="footer-brand">Wimpie &amp; Shannon</span>
+      14 June 2026 &nbsp;·&nbsp; Cape Town
+    </footer>
+  </div><!-- /gifts -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       RSVP
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-rsvp">
+    <div style="height:var(--nav-h)"></div>
+    <div class="rsvp-wrap">
+      <p class="eyebrow">RSVP asseblief voor [DATUM HIERSO]</p>
+      <h2 style="font-style:italic;">RSVP</h2>
+      <div class="divider"></div>
+      <p class="rsvp-intro">
+        Please find your name below to confirm your attendance. We look forward to celebrating with you.
+      </p>
+
+      <!-- STEP 1: Name lookup -->
+      <div id="rsvp-lookup">
+        <div class="form-group">
+          <label for="guest-search">Your full name</label>
+          <input type="text" id="guest-search" placeholder="e.g. Sarah Johnson" autocomplete="off" />
+          <p class="rsvp-error" id="lookup-error">We couldn't find your name on the guest list. Please check the
+            spelling or contact us directly.</p>
+        </div>
+        <button class="btn-primary" onclick="lookupGuest()">Find my invitation</button>
+      </div>
+
+      <!-- STEP 2: RSVP form -->
+      <div id="rsvp-form-step" class="hidden">
+        <p style="margin-bottom:1.5rem;color:var(--muted);">
+          Welcome, <strong id="guest-name-display"></strong>! Please complete your RSVP below.
+        </p>
+
+        <div class="form-group">
+          <label>Will you be attending?</label>
+          <div class="rsvp-radio-group">
+            <div class="rsvp-radio">
+              <input type="radio" name="attending" id="att-yes" value="yes" onchange="toggleDecline(false)">
+              <label for="att-yes">✓ &nbsp; Joyfully accepts</label>
+            </div>
+            <div class="rsvp-radio">
+              <input type="radio" name="attending" id="att-no" value="no" onchange="toggleDecline(true)">
+              <label for="att-no">✗ &nbsp; Regretfully declines</label>
+            </div>
+          </div>
+        </div>
+
+        <div id="attending-fields">
+          <div class="form-group">
+            <label for="meal-pref">Meal preference</label>
+            <select id="meal-pref">
+              <option value="">— Please select —</option>
+              <option value="standard">Standard (meat &amp; fish)</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="gluten-free">Gluten-free</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="dietary-notes">Dietary notes or allergies (optional)</label>
+            <input type="text" id="dietary-notes" placeholder="e.g. nut allergy">
+          </div>
+
+          <!-- Plus one block — shown/hidden per guest list -->
+          <div id="plus-one-block" class="hidden">
+            <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;">
+              Your invitation includes a plus one. Please fill in their details if they will be joining you.
+            </p>
+            <div class="form-group">
+              <label>Will your plus one be attending?</label>
+              <div class="rsvp-radio-group">
+                <div class="rsvp-radio">
+                  <input type="radio" name="plus-one-att" id="p1-yes" value="yes" onchange="togglePlusOneFields(true)">
+                  <label for="p1-yes">Yes</label>
+                </div>
+                <div class="rsvp-radio">
+                  <input type="radio" name="plus-one-att" id="p1-no" value="no" onchange="togglePlusOneFields(false)">
+                  <label for="p1-no">No</label>
+                </div>
+              </div>
+            </div>
+            <div id="plus-one-fields" class="hidden">
+              <div class="form-group">
+                <label for="p1-name">Plus one full name</label>
+                <input type="text" id="p1-name" placeholder="Full name">
+              </div>
+              <div class="form-group">
+                <label for="p1-meal">Their meal preference</label>
+                <select id="p1-meal">
+                  <option value="">— Please select —</option>
+                  <option value="standard">Standard (meat &amp; fish)</option>
+                  <option value="vegetarian">Vegetarian</option>
+                  <option value="vegan">Vegan</option>
+                  <option value="gluten-free">Gluten-free</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" id="message-group">
+          <label for="rsvp-message">Message for Wimpie &amp; Shannon (optional)</label>
+          <textarea id="rsvp-message" placeholder="We'd love to hear from you…"></textarea>
+        </div>
+
+        <button class="btn-primary" onclick="submitRsvp()" id="rsvp-submit-btn">Submit RSVP</button>
+        <p class="rsvp-error" id="form-error" style="margin-top:1rem;">Please complete all required fields.</p>
+      </div>
+
+      <!-- STEP 3: Confirmation -->
+      <div id="rsvp-confirmation" class="hidden">
+        <div class="confirm-icon">💌</div>
+        <h2 style="font-style:italic;">Thank you!</h2>
+        <div class="divider center"></div>
+        <p id="confirmation-msg">We've received your RSVP and can't wait to celebrate with you.</p>
+      </div>
+
+    </div><!-- /rsvp-wrap -->
+    <footer>
+      <span class="footer-brand">Wimpie &amp; Shannon</span>
+      14 June 2026 &nbsp;·&nbsp; Cape Town
+    </footer>
+  </div><!-- /rsvp -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════════════════════════ -->
+  <script>
+    // ── PAGE NAVIGATION ───────────────────────────────────────────
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── BURGER MENU ───────────────────────────────────────────────
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    // ── NAVBAR SCROLL SHADOW ──────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // ── SLIDESHOW ─────────────────────────────────────────────────
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slide-dot');
+    function goToSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = n;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+    setInterval(() => goToSlide((currentSlide + 1) % slides.length), 5000);
+
+    // ── Q&A ACCORDION ─────────────────────────────────────────────
+    document.querySelectorAll('.qa-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.qa-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.qa-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ── RSVP GUEST LIST ───────────────────────────────────────────
+    // ┌─────────────────────────────────────────────────────────────┐
+    // │  EDIT THIS LIST — add every invited guest.                  │
+    // │  plusOne: false  →  guest receives a plus one               │
+    // │  plusOne: false →  no plus one for this guest              │
+    // └─────────────────────────────────────────────────────────────┘
+    const GUEST_LIST = [
+      { name: "Stefan van Schoor", plusOne: true },
+      { name: "Michael Johnson", plusOne: false },
+      { name: "Claire Thompson", plusOne: false },
+      { name: "David Thompson", plusOne: false },
+      { name: "Anna Patel", plusOne: false },
+      { name: "Tom Richards", plusOne: false },
+      { name: "Jessica Evans", plusOne: false },
+      { name: "Mark Evans", plusOne: false },
+      { name: "Lucy Williams", plusOne: false },
+      { name: "Robert Smith", plusOne: false },
+      // Add more guests here...
+    ];
+
+    let currentGuest = null;
+    let isDeclined = false;
+
+    function lookupGuest() {
+      const input = document.getElementById('guest-search').value.trim().toLowerCase();
+      const error = document.getElementById('lookup-error');
+
+      // Fuzzy name match (first name, last name, or full)
+      const match = GUEST_LIST.find(g =>
+        g.name.toLowerCase() === input ||
+        g.name.toLowerCase().startsWith(input) ||
+        input.split(' ').every(part => g.name.toLowerCase().includes(part))
+      );
+
+      if (!match) {
+        error.classList.add('show');
+        return;
+      }
+      error.classList.remove('show');
+      currentGuest = match;
+
+      // Show their name & form
+      document.getElementById('guest-name-display').textContent = match.name;
+      document.getElementById('rsvp-lookup').classList.add('hidden');
+      document.getElementById('rsvp-form-step').classList.remove('hidden');
+
+      // Show / hide plus one block
+      if (match.plusOne) {
+        document.getElementById('plus-one-block').classList.remove('hidden');
+      }
+    }
+
+    function toggleDecline(declined) {
+      isDeclined = declined;
+      const fields = document.getElementById('attending-fields');
+      if (declined) {
+        fields.style.opacity = '0.4';
+        fields.style.pointerEvents = 'none';
+      } else {
+        fields.style.opacity = '1';
+        fields.style.pointerEvents = 'auto';
+      }
+    }
+
+    function togglePlusOneFields(show) {
+      const f = document.getElementById('plus-one-fields');
+      f.classList.toggle('hidden', !show);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // RSVP SUBMISSION
+    //
+    // This demo stores the RSVP in localStorage so you can test it.
+    //
+    // FOR PRODUCTION on GitHub Pages, use ONE of:
+    //
+    // OPTION A — Google Apps Script (recommended, free, full control):
+    //   1. Create a Google Sheet for responses.
+    //   2. Tools → Apps Script → paste the script from rsvp-backend.gs
+    //   3. Deploy as a Web App (execute as: me, access: anyone)
+    //   4. Replace FORM_ENDPOINT below with your deployment URL.
+    //
+    // OPTION B — Netlify Forms (easiest):
+    //   1. Deploy the site to Netlify instead of GitHub Pages.
+    //   2. Add name="rsvp" data-netlify="true" to the form element.
+    //   3. Responses appear in the Netlify dashboard automatically.
+    //
+    // OPTION C — Formspree (free tier, no backend needed):
+    //   1. Create account at formspree.io
+    //   2. Replace FORM_ENDPOINT with your Formspree form URL.
+    // ─────────────────────────────────────────────────────────────
+
+    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwV1nTAjxX3GDV7-GWlWgV5qDcoieXU5gUZ1SmrBZ83oGOE1PyY3rGF5sCRQFfKdDD8hQ/exec';
+
+    async function submitRsvp() {
+      const attendingEl = document.querySelector('input[name="attending"]:checked');
+      if (!attendingEl) {
+        document.getElementById('form-error').classList.add('show');
+        return;
+      }
+      document.getElementById('form-error').classList.remove('show');
+
+      const attending = attendingEl.value === 'yes';
+      const plusOneAtt = document.querySelector('input[name="plus-one-att"]:checked');
+
+      const payload = {
+        name: currentGuest.name,
+        attending: attending,
+        meal: document.getElementById('meal-pref').value,
+        dietary: document.getElementById('dietary-notes').value,
+        message: document.getElementById('rsvp-message').value,
+        plusOneAllowed: currentGuest.plusOne,
+        plusOneAttending: plusOneAtt ? plusOneAtt.value === 'yes' : false,
+        plusOneName: document.getElementById('p1-name').value,
+        plusOneMeal: document.getElementById('p1-meal').value,
+        timestamp: new Date().toISOString()
+      };
+
+      const btn = document.getElementById('rsvp-submit-btn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      try {
+        if (FORM_ENDPOINT !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = FORM_ENDPOINT;
+          form.target = 'hidden_iframe';
+
+          Object.entries(payload).forEach(([key, value]) => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = value;
+            form.appendChild(input);
+          });
+
+          document.body.appendChild(form);
+          form.submit();
+          document.body.removeChild(form);
+        } else {
+          // Demo mode: save to localStorage
+          const existing = JSON.parse(localStorage.getItem('rsvps') || '[]');
+          existing.push(payload);
+          localStorage.setItem('rsvps', JSON.stringify(existing));
+          console.log('RSVP saved (demo):', payload);
+        }
+
+        // Show confirmation
+        document.getElementById('rsvp-form-step').classList.add('hidden');
+        const conf = document.getElementById('rsvp-confirmation');
+        conf.classList.remove('hidden');
+        document.getElementById('confirmation-msg').textContent = attending
+          ? `We've received your RSVP and can't wait to celebrate with you on 14 June!`
+          : `We're sorry you can't make it. You'll be missed — thank you for letting us know.`;
+      } catch (e) {
+        btn.textContent = 'Submit RSVP';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or contact us directly.');
+      }
+    }
+
+    // Allow Enter key on lookup field
+    document.getElementById('guest-search').addEventListener('keydown', e => {
+      if (e.key === 'Enter') lookupGuest();
+    });
+  </script>
+
+  <iframe name="hidden_iframe" style="display:none"></iframe>
+</body>
+
+</html>
