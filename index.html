@@ -282,7 +282,7 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       Tuis PAGE
+       Home PAGE
     ════════════════════════════════════════════════════════════ */
     .slideshow {
       position: relative;
@@ -386,18 +386,18 @@
     }
 
     /* Date & Venue block */
-    .Tuis-details {
+    .Home-details {
       background: var(--cream);
       text-align: center;
       padding: 4rem 2rem;
     }
 
-    .Tuis-details .eyebrow {
+    .Home-details .eyebrow {
       text-align: center;
       display: block;
     }
 
-    .Tuis-details h2 {
+    .Home-details h2 {
       margin-bottom: 0.25rem;
     }
 
@@ -423,8 +423,8 @@
       line-height: 1.4;
     }
 
-    /* Tuis bottom nav */
-    .Tuis-nav-grid {
+    /* Home bottom nav */
+    .Home-nav-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 1px;
@@ -432,7 +432,7 @@
       border-top: 1px solid var(--cream);
     }
 
-    .Tuis-nav-item {
+    .Home-nav-item {
       background: var(--ivory);
       padding: 2.5rem 1.5rem;
       text-align: center;
@@ -442,17 +442,17 @@
       width: 100%;
     }
 
-    .Tuis-nav-item:hover {
+    .Home-nav-item:hover {
       background: var(--cream);
     }
 
-    .Tuis-nav-item .icon {
+    .Home-nav-item .icon {
       font-size: 1.8rem;
       display: block;
       margin-bottom: 0.75rem;
     }
 
-    .Tuis-nav-item .nav-label {
+    .Home-nav-item .nav-label {
       font-size: 0.7rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -460,12 +460,12 @@
       color: var(--muted);
     }
 
-    .Tuis-nav-item:hover .nav-label {
+    .Home-nav-item:hover .nav-label {
       color: var(--espresso);
     }
 
     /* ════════════════════════════════════════════════════════════
-       Ons Storie
+       Our Story
     ════════════════════════════════════════════════════════════ */
     .story-layout {
       display: grid;
@@ -520,9 +520,9 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       Fotos
+       Photos
     ════════════════════════════════════════════════════════════ */
-    .Fotos-stack {
+    .Photos-stack {
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
@@ -576,7 +576,7 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       Kleurskema
+       Colour Scheme
     ════════════════════════════════════════════════════════════ */
     .colour-hero {
       margin-top: var(--nav-h);
@@ -718,7 +718,7 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       Geskenk Register
+       Gift Register
     ════════════════════════════════════════════════════════════ */
     .gift-intro {
       font-family: var(--serif);
@@ -762,6 +762,13 @@
       font-size: 0.85rem;
       color: var(--muted);
       margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .gift-card .gift-desc2 {
+      font-size: 0.85rem;
+      color: var(--muted);
+      /* margin-bottom: 1rem; */
       line-height: 1.6;
     }
 
@@ -1004,6 +1011,10 @@
         display: none !important;
       }
     }
+
+    #accommodation-block {
+      padding-top: 2em;
+    }
   </style>
 </head>
 
@@ -1013,12 +1024,12 @@
   <nav id="navbar">
     <span class="nav-brand">Wimpie &amp; Shannon</span>
     <ul class="nav-links">
-      <li><a href="#" onclick="showPage('Tuis')">Tuis</a></li>
-      <li><a href="#" onclick="showPage('story')">Ons Storie</a></li>
-      <li><a href="#" onclick="showPage('Fotos')">Fotos</a></li>
-      <li><a href="#" onclick="showPage('colours')">Kleurskema</a></li>
+      <li><a href="#" onclick="showPage('Home')">Home</a></li>
+      <li><a href="#" onclick="showPage('story')">Our Story</a></li>
+      <li><a href="#" onclick="showPage('Photos')">Photos</a></li>
+      <li><a href="#" onclick="showPage('colours')">Colour Scheme</a></li>
       <li><a href="#" onclick="showPage('qa')">Q&amp;A</a></li>
-      <li><a href="#" onclick="showPage('gifts')">Geskenk Register</a></li>
+      <li><a href="#" onclick="showPage('gifts')">Gift Register</a></li>
       <li><a href="#" onclick="showPage('rsvp')">RSVP</a></li>
     </ul>
     <button class="burger" id="burger" aria-label="Open menu">
@@ -1028,95 +1039,123 @@
 
   <!-- Mobile drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#" onclick="showPage('Tuis');closeMobile()">Tuis</a>
-    <a href="#" onclick="showPage('story');closeMobile()">Ons Storie</a>
-    <a href="#" onclick="showPage('Fotos');closeMobile()">Fotos</a>
-    <a href="#" onclick="showPage('colours');closeMobile()">Kleurskema</a>
+    <a href="#" onclick="showPage('Home');closeMobile()">Home</a>
+    <a href="#" onclick="showPage('story');closeMobile()">Our Story</a>
+    <a href="#" onclick="showPage('Photos');closeMobile()">Photos</a>
+    <a href="#" onclick="showPage('colours');closeMobile()">Colour Scheme</a>
     <a href="#" onclick="showPage('qa');closeMobile()">Q&amp;A</a>
-    <a href="#" onclick="showPage('gifts');closeMobile()">Geskenk Register</a>
+    <a href="#" onclick="showPage('gifts');closeMobile()">Gift Register</a>
     <a href="#" onclick="showPage('rsvp');closeMobile()">RSVP</a>
   </div>
 
 
   <!-- ══════════════════════════════════════════════════════════════
-       Tuis PAGE
+       Home PAGE
   ═══════════════════════════════════════════════════════════════ -->
-  <div class="page active" id="page-Tuis">
+  <div class="page active" id="page-Home">
 
     <!-- Slideshow -->
     <div class="slideshow" style="margin-top:var(--nav-h)">
       <div class="slide active">
-        <!-- Replace <div class="slide-placeholder"> with <img class="slide-img" src="your-photo.jpg" alt=""> -->
-        <div class="slide-placeholder slide-placeholder-1"></div>
+        <img class="slide-img" src="home2.jpg" alt="">
       </div>
       <div class="slide">
-        <div class="slide-placeholder slide-placeholder-2"></div>
+        <img class="slide-img" src="home1.jpg" alt="">
       </div>
       <div class="slide">
-        <div class="slide-placeholder slide-placeholder-3"></div>
+        <img class="slide-img" src="home3.jpg" alt="">
       </div>
+      <div class="slide">
+        <img class="slide-img" src="home4.jpg" alt="">
+      </div>
+      <!-- <div class="slide">
+        <img class="slide-img" src="home1.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img class="slide-img" src="home3.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img class="slide-img" src="home4.jpg" alt="">
+      </div> -->
+      <!-- <div class="slide">
+        <img class="slide-img" src="home3.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img class="slide-img" src="home1.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img class="slide-img" src="home3.jpg" alt=""> -->
+      </div>
+      <!-- <div class="slide">
+        <img class="slide-img" src="home4.jpg" alt="">
+      </div> -->
 
       <div class="slide-caption">
-        <p class="eyebrow">Ons Trou!</p>
+        <p class="eyebrow">We're getting married!</p>
         <h1>Wimpie &amp; Shannon</h1>
-        <p class="subtitle">19 Desember 2026 &nbsp;·&nbsp; Riebeek-Kasteel</p>
+        <p class="subtitle">19 December 2026 &nbsp;·&nbsp; Riebeek-Kasteel</p>
       </div>
 
       <div class="slide-dots">
         <div class="slide-dot active" onclick="goToSlide(0)"></div>
         <div class="slide-dot" onclick="goToSlide(1)"></div>
         <div class="slide-dot" onclick="goToSlide(2)"></div>
+        <div class="slide-dot" onclick="goToSlide(3)"></div>
       </div>
     </div>
 
     <!-- Date & Venue -->
-    <div class="Tuis-details">
+    <div class="Home-details">
       <p class="eyebrow">Save the date</p>
       <h2 style="font-style:italic;">The Details</h2>
       <div class="divider center"></div>
       <div class="details-grid">
         <div class="detail-card">
           <p class="label">Date</p>
-          <p>Saturday, 14 June 2026</p>
+          <p>19 December 2026</p>
         </div>
         <div class="detail-card">
-          <p class="label">Ceremony</p>
+          <p class="label">Be Seated By:</p>
           <p>3:00 PM</p>
         </div>
         <div class="detail-card">
           <p class="label">Venue</p>
-          <p>The Grand Hall<br>Constantia, Cape Town</p>
+          <p>Delsma Farm,<br>Riebeek-Kasteel</p>
         </div>
         <div class="detail-card">
           <p class="label">Reception</p>
           <p>To follow at<br>the same venue</p>
         </div>
+        <div class="detail-card">
+          <p class="label">Darts start at:</p>
+          <p>19:00</p>
+        </div>
       </div>
     </div>
 
     <!-- Bottom nav to other pages -->
-    <div class="Tuis-nav-grid">
-      <button class="Tuis-nav-item" onclick="showPage('story')">
+    <div class="Home-nav-grid">
+      <button class="Home-nav-item" onclick="showPage('story')">
         <span class="icon">💛</span>
-        <span class="nav-label">Ons Storie</span>
+        <span class="nav-label">Our Story</span>
       </button>
-      <button class="Tuis-nav-item" onclick="showPage('Fotos')">
+      <button class="Home-nav-item" onclick="showPage('Photos')">
         <span class="icon">📷</span>
-        <span class="nav-label">Fotos</span>
+        <span class="nav-label">Photos</span>
       </button>
-      <button class="Tuis-nav-item" onclick="showPage('colours')">
+      <button class="Home-nav-item" onclick="showPage('colours')">
         <span class="icon">🎨</span>
-        <span class="nav-label">Kleurskema</span>
+        <span class="nav-label">Colour Scheme</span>
       </button>
-      <button class="Tuis-nav-item" onclick="showPage('qa')">
+      <button class="Home-nav-item" onclick="showPage('qa')">
         <span class="icon">💬</span>
         <span class="nav-label">Q &amp; A</span>
       </button>
-      <button class="Tuis-nav-item" onclick="showPage('gifts')">
+      <button class="Home-nav-item" onclick="showPage('gifts')">
         <span class="icon">🎁</span>
-        <span class="nav-label">Geskenk Register</span>
+        <span class="nav-label">Gift Register</span>
       </button>
-      <button class="Tuis-nav-item" onclick="showPage('rsvp')">
+      <button class="Home-nav-item" onclick="showPage('rsvp')">
         <span class="icon">✉️</span>
         <span class="nav-label">RSVP</span>
       </button>
@@ -1124,29 +1163,30 @@
 
     <footer>
       <span class="footer-brand">Wimpie &amp; Shannon</span>
-      14 June 2026 &nbsp;·&nbsp; Cape Town
+      19 December 2026 &nbsp;·&nbsp; Riebeek-Kasteel
+      <span class="footer-brand">#vanTherontotvanSchoor</span>
     </footer>
-  </div><!-- /Tuis -->
+  </div><!-- /Home -->
 
 
   <!-- ══════════════════════════════════════════════════════════════
-       Ons Storie
+       Our Story
   ═══════════════════════════════════════════════════════════════ -->
   <div class="page" id="page-story">
     <div style="height:var(--nav-h)"></div>
     <div class="section">
       <p class="eyebrow">How it began</p>
-      <h2 style="font-style:italic;">Ons Storie</h2>
+      <h2 style="font-style:italic;">Our Story</h2>
       <div class="divider"></div>
 
       <div class="story-layout">
         <div class="story-img-wrap">
-          <!-- Replace with: <img src="your-couple-photo.jpg" alt="James and Emily"> -->
-          <div class="story-img-placeholder">Your photo here</div>
+          <!-- Replace with: <img src="your-couple-photo.jpg" alt="Wimpie and Shannon"> -->
+          <img src="story.jpg" alt="Wimpie and Shannon">
         </div>
         <div class="story-text">
           <p>
-            It was a rainy Thursday evening at a mutual friend's dinner party when James and Emily first met. He was
+            It was a rainy Thursday evening at a mutual friend's dinner party when Wimpie and Shannon first met. He was
             late — she had already claimed the best seat. Their eyes met across a bowl of bread rolls and the rest, as
             they say, is history.
           </p>
@@ -1168,26 +1208,28 @@
     </div>
     <footer>
       <span class="footer-brand">Wimpie &amp; Shannon</span>
-      14 June 2026 &nbsp;·&nbsp; Cape Town
+      19 December 2026 &nbsp;·&nbsp; Riebeek-Kasteel
+      <span class="footer-brand">#vanTherontotvanSchoor</span>
     </footer>
   </div><!-- /story -->
 
 
   <!-- ══════════════════════════════════════════════════════════════
-       Fotos
+       Photos
   ═══════════════════════════════════════════════════════════════ -->
-  <div class="page" id="page-Fotos">
+  <div class="page" id="page-Photos">
     <div style="height:var(--nav-h)"></div>
     <div style="max-width:700px;margin:0 auto;padding:4rem 2rem 1rem;">
       <p class="eyebrow">Memories</p>
-      <h2 style="font-style:italic;">Fotos</h2>
+      <h2 style="font-style:italic;">Photos</h2>
       <div class="divider"></div>
     </div>
 
-    <div class="Fotos-stack">
+    <div class="Photos-stack">
       <!-- Replace each .photo-placeholder with an <img src="..."> -->
       <div class="photo-item">
-        <div class="photo-placeholder photo-placeholder-1">Photo 1 — Add your image here</div>
+        <!-- <div class="photo-placeholder photo-placeholder-1">Photo 1 — Add your image here</div> -->
+        <img src="home1.jpg">
         <p class="photo-caption">The day we met, 2023</p>
       </div>
       <div class="photo-item">
@@ -1210,13 +1252,14 @@
 
     <footer>
       <span class="footer-brand">Wimpie &amp; Shannon</span>
-      14 June 2026 &nbsp;·&nbsp; Cape Town
+      19 December 2026 &nbsp;·&nbsp; Riebeek-Kasteel
+      <span class="footer-brand">#vanTherontotvanSchoor</span>
     </footer>
-  </div><!-- /Fotos -->
+  </div><!-- /Photos -->
 
 
   <!-- ══════════════════════════════════════════════════════════════
-       Kleurskema
+       Colour Scheme
   ═══════════════════════════════════════════════════════════════ -->
   <div class="page" id="page-colours">
     <div style="height:var(--nav-h)"></div>
@@ -1226,17 +1269,12 @@
       <div class="colour-hero-placeholder">
         <div class="colour-hero-text">
           <p class="eyebrow">Aesthetic</p>
-          <h2>Kleurskema</h2>
+          <h2>Colour Scheme</h2>
         </div>
       </div>
     </div>
 
     <div class="colour-section">
-      <p>
-        Our wedding palette was inspired by a late-autumn evening in the winelands — soft blushes fading into earthy
-        sages, all warmed by candlelight and golden hour glow. We wanted something that felt both romantic and grounded;
-        timeless without being fussy.
-      </p>
       <p>
         If you're choosing what to wear, we'd love to see you in any of these tones — or any soft, muted palette that
         feels like you. Please avoid white and ivory out of respect for the bride.
@@ -1244,31 +1282,32 @@
 
       <div class="swatches">
         <div class="swatch">
-          <div class="swatch-circle" style="background:#d4a5a5;"></div>
-          <span class="swatch-name">Blush Rose</span>
+          <div class="swatch-circle" style="background:#eea898;"></div>
+          <span class="swatch-name">Soft Coral</span>
         </div>
         <div class="swatch">
-          <div class="swatch-circle" style="background:#8a9e8a;"></div>
-          <span class="swatch-name">Sage Green</span>
+          <div class="swatch-circle" style="background:#f6c2ac;"></div>
+          <span class="swatch-name">Peach</span>
+        </div>
+        <!-- <div class="swatch">
+          <div class="swatch-circle" style="background:#ffffff;"></div>
+          <span class="swatch-name">Linen White</span>
+        </div> -->
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#a8b9cb;"></div>
+          <span class="swatch-name">French Blue</span>
         </div>
         <div class="swatch">
-          <div class="swatch-circle" style="background:#b89a6a;"></div>
-          <span class="swatch-name">Warm Gold</span>
-        </div>
-        <div class="swatch">
-          <div class="swatch-circle" style="background:#f0e8dc;"></div>
-          <span class="swatch-name">Champagne</span>
-        </div>
-        <div class="swatch">
-          <div class="swatch-circle" style="background:#3a2e2e; border:1px solid #f0e8dc;"></div>
-          <span class="swatch-name">Deep Espresso</span>
+          <div class="swatch-circle" style="background:#314961; border:1px solid #f0e8dc;"></div>
+          <span class="swatch-name">Navy</span>
         </div>
       </div>
     </div>
 
     <footer>
       <span class="footer-brand">Wimpie &amp; Shannon</span>
-      14 June 2026 &nbsp;·&nbsp; Cape Town
+      19 December 2026 &nbsp;·&nbsp; Riebeek-Kasteel
+      <span class="footer-brand">#vanTherontotvanSchoor</span>
     </footer>
   </div><!-- /colours -->
 
@@ -1284,7 +1323,7 @@
       <div class="divider"></div>
 
       <ul class="qa-list" id="qa-list">
-        <li class="qa-item">
+        <!-- <li class="qa-item">
           <button class="qa-question">
             Is the venue child-friendly?
             <span class="qa-icon">+</span>
@@ -1295,7 +1334,7 @@
               a grown-ups evening. We're happy to recommend babysitting agencies in the area — just reach out!
             </div>
           </div>
-        </li>
+        </li> -->
         <li class="qa-item">
           <button class="qa-question">
             Is there parking at the venue?
@@ -1304,7 +1343,7 @@
           <div class="qa-answer">
             <div class="qa-answer-inner">
               Yes, there is ample free parking on site. We do encourage carpooling and ask that you arrange a designated
-              driver or use a ride-hailing service if you plan to enjoy the open bar.
+              driver if you plan to enjoy the cash bar.
             </div>
           </div>
         </li>
@@ -1315,27 +1354,14 @@
           </button>
           <div class="qa-answer">
             <div class="qa-answer-inner">
-              Smart / cocktail attire. We'd love guests to embrace the colour palette — blush, sage, gold, and champagne
-              are welcome. Please avoid white and ivory. The ceremony will be outdoors so keep an afternoon chill in
-              mind.
+              Semi-formal. We'd love guests to embrace the colour palette — soft coral, peach, french blue and navy
+              are welcome. Please avoid white and ivory. The ceremony will be outdoors.
             </div>
           </div>
         </li>
         <li class="qa-item">
           <button class="qa-question">
-            Will there be dietary options?
-            <span class="qa-icon">+</span>
-          </button>
-          <div class="qa-answer">
-            <div class="qa-answer-inner">
-              Absolutely. We'll have vegetarian, vegan, and gluten-free options throughout. Please note any dietary
-              requirements on your RSVP and we'll make sure you're looked after.
-            </div>
-          </div>
-        </li>
-        <li class="qa-item">
-          <button class="qa-question">
-            Can I take Fotos during the ceremony?
+            Can I take Photos during the ceremony?
             <span class="qa-icon">+</span>
           </button>
           <div class="qa-answer">
@@ -1345,18 +1371,7 @@
             </div>
           </div>
         </li>
-        <li class="qa-item">
-          <button class="qa-question">
-            Is accommodation available nearby?
-            <span class="qa-icon">+</span>
-          </button>
-          <div class="qa-answer">
-            <div class="qa-answer-inner">
-              There are several lovely guesthouses and hotels within 10 minutes of the venue. We've put together a list
-              which we'll email to all guests — feel free to contact us in the meantime.
-            </div>
-          </div>
-        </li>
+
         <li class="qa-item">
           <button class="qa-question">
             What time should I arrive?
@@ -1364,56 +1379,105 @@
           </button>
           <div class="qa-answer">
             <div class="qa-answer-inner">
-              Guests are welcome from 2:30 PM. The ceremony will begin promptly at 3:00 PM — we kindly ask that you're
-              seated at least 10 minutes before. Late arrivals may be asked to wait until the processional is complete.
+              Guests are welcome from ??:?? PM. The ceremony will begin promptly at ??:?? PM — we kindly ask that you're
+              seated at least 10 minutes before. Late arrivals will be asked to wait until the processional is complete.
             </div>
           </div>
         </li>
+
+        <li class="qa-item">
+          <button class="qa-question">
+            Will there be a cash bar?
+            <span class="qa-icon">+</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              Yes there will be a cash bar, please feel free to bring your cash or card.
+            </div>
+          </div>
+        </li>
+
       </ul>
     </div>
     <footer>
       <span class="footer-brand">Wimpie &amp; Shannon</span>
-      14 June 2026 &nbsp;·&nbsp; Cape Town
+      19 December 2026 &nbsp;·&nbsp; Riebeek-Kasteel
+      <span class="footer-brand">#vanTherontotvanSchoor</span>
     </footer>
   </div><!-- /qa -->
 
 
   <!-- ══════════════════════════════════════════════════════════════
-       Geskenk Register
+       Gift Register
   ═══════════════════════════════════════════════════════════════ -->
   <div class="page" id="page-gifts">
     <div style="height:var(--nav-h)"></div>
     <div class="section-wide">
-      <p class="eyebrow">Geskenk Register</p>
+      <p class="eyebrow">Gift Register</p>
       <h2 style="font-style:italic;">Gifts</h2>
       <div class="divider"></div>
       <p class="gift-intro">
-        Your presence is the greatest gift of all. However, if you'd like to give something, here are a few ideas — or
-        feel free to contribute to our honeymoon fund.
+        Your presence is the greatest gift of all. However, if you'd like to give something, please feel free.
+        Because we are going to build a life in The Netherlands we prefer cash or vouchers for our Honeymoon and
+        European adventures.
       </p>
 
       <div class="gift-grid">
         <div class="gift-card">
           <div class="gift-icon">✈️</div>
           <h3>Honeymoon Fund</h3>
-          <p class="gift-desc">Contribute to our dream trip to Italy and Greece. Every little bit helps make memories!
+          <p class="gift-desc">Contribute to our dream trip to Mauritius. Every little bit helps make memories! <br> Cash or EFT is welcome, bank details below.
           </p>
+          
           <div class="gift-price">Any amount</div>
           <span class="gift-tag">Most Wanted</span>
         </div>
+        <a class="gift-card"
+          href="https://www.amazon.nl/b/?ie=UTF8&node=16241984031&tag=nltxtgostdde-21&ref=pd_sl_8e3ny26ql2_b&adgrpid=112437956544&hvpone=&hvptwo=&hvadid=452996086065&hvpos=&hvnetw=g&hvrand=4441322462447106279&hvqmt=b&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9065058&hvtargid=kwd-2343172173&hydadcr=17959_2102423&mcid=5ce8ac728ab2388f95cf4fc914834da0&hvocijid=4441322462447106279--&hvexpln=0&gad_source=1">
+          <div>
+            <div class="gift-icon">🛒</div>
+            <h3>Amazon Gift Card</h3>
+            <p class="gift-desc">A voucher for Amazon Netherlands</p>
+            <div class="gift-price">Any amount</div>
+          </div>
+        </a>
+        <a class="gift-card" href="https://www.lecreuset.nl/nl_NL/c/cadeaukaart">
+          <div>
+            <div class="gift-icon">🛒</div>
+            <h3>Le Crueset Gift Card</h3>
+            <p class="gift-desc">A voucher for Le Crueset Netherlands</p>
+            <div class="gift-price">Any amount</div>
+          </div>
+        </a>
+        <a class="gift-card"
+          href="https://www.bol.com/nl/nl/l/bol-com-cadeaukaarten/20639/4282200616/?Referrer=ADVNLGOO002047-TI6SEYJUOKUKC-560218770894-C-278882794&gad_source=1&gad_campaignid=278882794&gclid=CjwKCAjwg_nNBhAGEiwAiYPYA9ZrPU-9dNEtg_6jvwm1GmnGQ0r33x17U_jFTow5Kxk_x4TzCGuzSRoCcq8QAvD_BwE">
+          <div>
+            <div class="gift-icon">🛒</div>
+            <h3>BOL Gift Card</h3>
+            <p class="gift-desc">A voucher for BOL, an online shop in the Netherlands</p>
+            <div class="gift-price">Any amount</div>
+          </div>
+        </a>
+        <a class="gift-card"
+          href="https://ikeanl.frizbee-solutions.com/home">
+          <div>
+            <div class="gift-icon">🛋️</div>
+            <h3>IKEA Gift Card</h3>
+            <p class="gift-desc">A voucher for IKEA Netherlands</p>
+            <div class="gift-price">Any amount</div>
+          </div>
+        </a>
         <div class="gift-card">
-          <div class="gift-icon">🍽️</div>
-          <h3>Dining Experience</h3>
-          <p class="gift-desc">A voucher to a fine dining restaurant — we love good food and special occasions.</p>
-          <div class="gift-price">R 800 – R 2,000</div>
+          <div class="gift-icon">💶</div>
+          <h3>Bank Details</h3>
+          <!-- <p class="gift-desc">We both love to read. A voucher to Exclusive Books would be well-used.</p> -->
+          <p class="gift-desc2">Bank: Discovery Bank</p>
+          <p class="gift-desc2">Account Number: 16241746716</p>
+          <p class="gift-desc2">Branch Code: 679000</p>
+          <p class="gift-desc2">Reference: Your Name</p>
+          <!-- <div class="gift-price">R 500 – R 1,500</div> -->
         </div>
-        <div class="gift-card">
-          <div class="gift-icon">🛋️</div>
-          <h3>Le Creuset Set</h3>
-          <p class="gift-desc">The sage green cast-iron set from Le Creuset. Our dream kitchen addition.</p>
-          <div class="gift-price">R 3,500</div>
-        </div>
-        <div class="gift-card">
+        <!-- <div class="gift-card">
           <div class="gift-icon">🌿</div>
           <h3>Robot Vacuum</h3>
           <p class="gift-desc">Practical, yes — but a Roomba is the gift that keeps on giving (especially with a dog).
@@ -1429,7 +1493,7 @@
         <div class="gift-card">
           <div class="gift-icon">🛁</div>
           <h3>Luxury Towel Set</h3>
-          <p class="gift-desc">Egyptian cotton, 600 GSM, in ivory. The ones from Woolworths Tuis.</p>
+          <p class="gift-desc">Egyptian cotton, 600 GSM, in ivory. The ones from Woolworths Home.</p>
           <div class="gift-price">R 1,200</div>
         </div>
         <div class="gift-card">
@@ -1443,62 +1507,63 @@
           <h3>Experience Voucher</h3>
           <p class="gift-desc">Concerts, theatre, wine tastings — we love experiences over things.</p>
           <div class="gift-price">Any amount</div>
-        </div>
+        </div> -->
+      </div> 
       </div>
-    </div>
-    <footer>
-      <span class="footer-brand">Wimpie &amp; Shannon</span>
-      14 June 2026 &nbsp;·&nbsp; Cape Town
-    </footer>
-  </div><!-- /gifts -->
+      <footer>
+        <span class="footer-brand">Wimpie &amp; Shannon</span>
+        19 December 2026 &nbsp;·&nbsp; Riebeek-Kasteel
+      <span class="footer-brand">#vanTherontotvanSchoor</span>
+      </footer>
+    </div><!-- /gifts -->
 
 
-  <!-- ══════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════
        RSVP
   ═══════════════════════════════════════════════════════════════ -->
-  <div class="page" id="page-rsvp">
-    <div style="height:var(--nav-h)"></div>
-    <div class="rsvp-wrap">
-      <p class="eyebrow">RSVP asseblief voor [DATUM HIERSO]</p>
-      <h2 style="font-style:italic;">RSVP</h2>
-      <div class="divider"></div>
-      <p class="rsvp-intro">
-        Please find your name below to confirm your attendance. We look forward to celebrating with you.
-      </p>
-
-      <!-- STEP 1: Name lookup -->
-      <div id="rsvp-lookup">
-        <div class="form-group">
-          <label for="guest-search">Your full name</label>
-          <input type="text" id="guest-search" placeholder="e.g. Sarah Johnson" autocomplete="off" />
-          <p class="rsvp-error" id="lookup-error">We couldn't find your name on the guest list. Please check the
-            spelling or contact us directly.</p>
-        </div>
-        <button class="btn-primary" onclick="lookupGuest()">Find my invitation</button>
-      </div>
-
-      <!-- STEP 2: RSVP form -->
-      <div id="rsvp-form-step" class="hidden">
-        <p style="margin-bottom:1.5rem;color:var(--muted);">
-          Welcome, <strong id="guest-name-display"></strong>! Please complete your RSVP below.
+    <div class="page" id="page-rsvp">
+      <div style="height:var(--nav-h)"></div>
+      <div class="rsvp-wrap">
+        <p class="eyebrow">Please RSVP before 30 June</p>
+        <h2 style="font-style:italic;">RSVP</h2>
+        <div class="divider"></div>
+        <p class="rsvp-intro">
+          Please find your name below to confirm your attendance. We look forward to celebrating with you.
         </p>
 
-        <div class="form-group">
-          <label>Will you be attending?</label>
-          <div class="rsvp-radio-group">
-            <div class="rsvp-radio">
-              <input type="radio" name="attending" id="att-yes" value="yes" onchange="toggleDecline(false)">
-              <label for="att-yes">✓ &nbsp; Joyfully accepts</label>
-            </div>
-            <div class="rsvp-radio">
-              <input type="radio" name="attending" id="att-no" value="no" onchange="toggleDecline(true)">
-              <label for="att-no">✗ &nbsp; Regretfully declines</label>
-            </div>
+        <!-- STEP 1: Name lookup -->
+        <div id="rsvp-lookup">
+          <div class="form-group">
+            <label for="guest-search">Your full name</label>
+            <input type="text" id="guest-search" placeholder="e.g. Sarah Johnson" autocomplete="off" />
+            <p class="rsvp-error" id="lookup-error">We couldn't find your name on the guest list. Please check the
+              spelling or contact us directly.</p>
           </div>
+          <button class="btn-primary" onclick="lookupGuest()">Find my invitation</button>
         </div>
 
-        <div id="attending-fields">
+        <!-- STEP 2: RSVP form -->
+        <div id="rsvp-form-step" class="hidden">
+          <p style="margin-bottom:1.5rem;color:var(--muted);">
+            Welcome, <strong id="guest-name-display"></strong>! Please complete your RSVP below.
+          </p>
+
           <div class="form-group">
+            <label>Will you be attending?</label>
+            <div class="rsvp-radio-group">
+              <div class="rsvp-radio">
+                <input type="radio" name="attending" id="att-yes" value="yes" onchange="toggleDecline(false)">
+                <label for="att-yes">✓ &nbsp; Joyfully accepts</label>
+              </div>
+              <div class="rsvp-radio">
+                <input type="radio" name="attending" id="att-no" value="no" onchange="toggleDecline(true)">
+                <label for="att-no">✗ &nbsp; Regretfully declines</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="attending-fields">
+            <!-- <div class="form-group">
             <label for="meal-pref">Meal preference</label>
             <select id="meal-pref">
               <option value="">— Please select —</option>
@@ -1507,37 +1572,38 @@
               <option value="vegan">Vegan</option>
               <option value="gluten-free">Gluten-free</option>
             </select>
-          </div>
+          </div> -->
 
-          <div class="form-group">
-            <label for="dietary-notes">Dietary notes or allergies (optional)</label>
-            <input type="text" id="dietary-notes" placeholder="e.g. nut allergy">
-          </div>
-
-          <!-- Plus one block — shown/hidden per guest list -->
-          <div id="plus-one-block" class="hidden">
-            <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;">
-              Your invitation includes a plus one. Please fill in their details if they will be joining you.
-            </p>
             <div class="form-group">
-              <label>Will your plus one be attending?</label>
-              <div class="rsvp-radio-group">
-                <div class="rsvp-radio">
-                  <input type="radio" name="plus-one-att" id="p1-yes" value="yes" onchange="togglePlusOneFields(true)">
-                  <label for="p1-yes">Yes</label>
-                </div>
-                <div class="rsvp-radio">
-                  <input type="radio" name="plus-one-att" id="p1-no" value="no" onchange="togglePlusOneFields(false)">
-                  <label for="p1-no">No</label>
-                </div>
-              </div>
+              <label for="dietary-notes">Dietary notes or allergies (optional)</label>
+              <input type="text" id="dietary-notes" placeholder="e.g. nut allergy">
             </div>
-            <div id="plus-one-fields" class="hidden">
+
+            <!-- Plus one block — shown/hidden per guest list -->
+            <div id="plus-one-block" class="hidden">
+              <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;">
+                Your invitation includes a plus one. Please fill in their details if they will be joining you.
+              </p>
               <div class="form-group">
-                <label for="p1-name">Plus one full name</label>
-                <input type="text" id="p1-name" placeholder="Full name">
+                <label>Will your plus one be attending?</label>
+                <div class="rsvp-radio-group">
+                  <div class="rsvp-radio">
+                    <input type="radio" name="plus-one-att" id="p1-yes" value="yes"
+                      onchange="togglePlusOneFields(true)">
+                    <label for="p1-yes">Yes</label>
+                  </div>
+                  <div class="rsvp-radio">
+                    <input type="radio" name="plus-one-att" id="p1-no" value="no" onchange="togglePlusOneFields(false)">
+                    <label for="p1-no">No</label>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
+              <div id="plus-one-fields" class="hidden">
+                <div class="form-group">
+                  <label for="p1-name">Plus one full name</label>
+                  <input type="text" id="p1-name" placeholder="Full name">
+                </div>
+                <!-- <div class="form-group">
                 <label for="p1-meal">Their meal preference</label>
                 <select id="p1-meal">
                   <option value="">— Please select —</option>
@@ -1546,256 +1612,278 @@
                   <option value="vegan">Vegan</option>
                   <option value="gluten-free">Gluten-free</option>
                 </select>
+              </div> -->
               </div>
             </div>
+
+            <div class="form-group hidden" id="accommodation-block">
+              <label>Accommodation</label>
+              <div class="rsvp-radio-group">
+                <div class="rsvp-radio">
+                  <input type="radio" name="accommodation" id="acc-yes" value="yes">
+                  <label for="acc-yes">Yes, I need it</label>
+                </div>
+                <div class="rsvp-radio">
+                  <input type="radio" name="accommodation" id="acc-no" value="no">
+                  <label for="acc-no">No, I don't</label>
+                </div>
+              </div>
+            </div>
+
           </div>
+
+          <div class="form-group" id="message-group">
+            <label for="rsvp-message">Message for Wimpie &amp; Shannon (optional)</label>
+            <textarea id="rsvp-message" placeholder="We'd love to hear from you…"></textarea>
+          </div>
+
+          <button class="btn-primary" onclick="submitRsvp()" id="rsvp-submit-btn">Submit RSVP</button>
+          <p class="rsvp-error" id="form-error" style="margin-top:1rem;">Please complete all required fields.</p>
         </div>
 
-        <div class="form-group" id="message-group">
-          <label for="rsvp-message">Message for Wimpie &amp; Shannon (optional)</label>
-          <textarea id="rsvp-message" placeholder="We'd love to hear from you…"></textarea>
+        <!-- STEP 3: Confirmation -->
+        <div id="rsvp-confirmation" class="hidden">
+          <div class="confirm-icon">💌</div>
+          <h2 style="font-style:italic;">Thank you!</h2>
+          <div class="divider center"></div>
+          <p id="confirmation-msg">We've received your RSVP and can't wait to celebrate with you.</p>
         </div>
 
-        <button class="btn-primary" onclick="submitRsvp()" id="rsvp-submit-btn">Submit RSVP</button>
-        <p class="rsvp-error" id="form-error" style="margin-top:1rem;">Please complete all required fields.</p>
-      </div>
-
-      <!-- STEP 3: Confirmation -->
-      <div id="rsvp-confirmation" class="hidden">
-        <div class="confirm-icon">💌</div>
-        <h2 style="font-style:italic;">Thank you!</h2>
-        <div class="divider center"></div>
-        <p id="confirmation-msg">We've received your RSVP and can't wait to celebrate with you.</p>
-      </div>
-
-    </div><!-- /rsvp-wrap -->
-    <footer>
-      <span class="footer-brand">Wimpie &amp; Shannon</span>
-      14 June 2026 &nbsp;·&nbsp; Cape Town
-    </footer>
-  </div><!-- /rsvp -->
+      </div><!-- /rsvp-wrap -->
+      <footer>
+        <span class="footer-brand">Wimpie &amp; Shannon</span>
+        19 December 2026 &nbsp;·&nbsp; Riebeek-Kasteel
+      <span class="footer-brand">#vanTherontotvanSchoor</span>
+      </footer>
+    </div><!-- /rsvp -->
 
 
-  <!-- ══════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════
        JAVASCRIPT
   ═══════════════════════════════════════════════════════════════ -->
-  <script>
-    // ── PAGE NAVIGATION ───────────────────────────────────────────
-    function showPage(id) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('page-' + id).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    <script>
+      // ── PAGE NAVIGATION ───────────────────────────────────────────
+      function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-' + id).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
 
-    // ── BURGER MENU ───────────────────────────────────────────────
-    const burger = document.getElementById('burger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-    });
-    function closeMobile() {
-      burger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    }
-
-    // ── NAVBAR SCROLL SHADOW ──────────────────────────────────────
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
-    });
-
-    // ── SLIDESHOW ─────────────────────────────────────────────────
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.slide-dot');
-    function goToSlide(n) {
-      slides[currentSlide].classList.remove('active');
-      dots[currentSlide].classList.remove('active');
-      currentSlide = n;
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
-    }
-    setInterval(() => goToSlide((currentSlide + 1) % slides.length), 5000);
-
-    // ── Q&A ACCORDION ─────────────────────────────────────────────
-    document.querySelectorAll('.qa-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.qa-item');
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.qa-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+      // ── BURGER MENU ───────────────────────────────────────────────
+      const burger = document.getElementById('burger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
       });
-    });
-
-    // ── RSVP GUEST LIST ───────────────────────────────────────────
-    // ┌─────────────────────────────────────────────────────────────┐
-    // │  EDIT THIS LIST — add every invited guest.                  │
-    // │  plusOne: false  →  guest receives a plus one               │
-    // │  plusOne: false →  no plus one for this guest              │
-    // └─────────────────────────────────────────────────────────────┘
-    const GUEST_LIST = [
-      { name: "Stefan van Schoor", plusOne: true },
-      { name: "Michael Johnson", plusOne: false },
-      { name: "Claire Thompson", plusOne: false },
-      { name: "David Thompson", plusOne: false },
-      { name: "Anna Patel", plusOne: false },
-      { name: "Tom Richards", plusOne: false },
-      { name: "Jessica Evans", plusOne: false },
-      { name: "Mark Evans", plusOne: false },
-      { name: "Lucy Williams", plusOne: false },
-      { name: "Robert Smith", plusOne: false },
-      // Add more guests here...
-    ];
-
-    let currentGuest = null;
-    let isDeclined = false;
-
-    function lookupGuest() {
-      const input = document.getElementById('guest-search').value.trim().toLowerCase();
-      const error = document.getElementById('lookup-error');
-
-      // Fuzzy name match (first name, last name, or full)
-      const match = GUEST_LIST.find(g =>
-        g.name.toLowerCase() === input ||
-        g.name.toLowerCase().startsWith(input) ||
-        input.split(' ').every(part => g.name.toLowerCase().includes(part))
-      );
-
-      if (!match) {
-        error.classList.add('show');
-        return;
+      function closeMobile() {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
       }
-      error.classList.remove('show');
-      currentGuest = match;
 
-      // Show their name & form
-      document.getElementById('guest-name-display').textContent = match.name;
-      document.getElementById('rsvp-lookup').classList.add('hidden');
-      document.getElementById('rsvp-form-step').classList.remove('hidden');
+      // ── NAVBAR SCROLL SHADOW ──────────────────────────────────────
+      window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+      });
 
-      // Show / hide plus one block
-      if (match.plusOne) {
-        document.getElementById('plus-one-block').classList.remove('hidden');
+      // ── SLIDESHOW ─────────────────────────────────────────────────
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.slide-dot');
+      function goToSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        currentSlide = n;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
       }
-    }
+      setInterval(() => goToSlide((currentSlide + 1) % slides.length), 3000);
 
-    function toggleDecline(declined) {
-      isDeclined = declined;
-      const fields = document.getElementById('attending-fields');
-      if (declined) {
-        fields.style.opacity = '0.4';
-        fields.style.pointerEvents = 'none';
-      } else {
-        fields.style.opacity = '1';
-        fields.style.pointerEvents = 'auto';
-      }
-    }
+      // ── Q&A ACCORDION ─────────────────────────────────────────────
+      document.querySelectorAll('.qa-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.qa-item');
+          const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.qa-item').forEach(i => i.classList.remove('open'));
+          if (!isOpen) item.classList.add('open');
+        });
+      });
 
-    function togglePlusOneFields(show) {
-      const f = document.getElementById('plus-one-fields');
-      f.classList.toggle('hidden', !show);
-    }
+      // ── RSVP GUEST LIST ───────────────────────────────────────────
+      // ┌─────────────────────────────────────────────────────────────┐
+      // │  EDIT THIS LIST — add every invited guest.                  │
+      // │  plusOne: false  →  guest receives a plus one               │
+      // │  plusOne: false →  no plus one for this guest              │
+      // └─────────────────────────────────────────────────────────────┘
+      const GUEST_LIST = [
+        { name: "Stefan van Schoor", plusOne: true, accommodation: true },
+        { name: "Michael Johnson", plusOne: false, accommodation: false },
+        { name: "Claire Thompson", plusOne: false, accommodation: false },
+        { name: "David Thompson", plusOne: false, accommodation: false },
+        { name: "Anna Patel", plusOne: false, accommodation: false },
+        { name: "Tom Richards", plusOne: false, accommodation: true },
+        { name: "Jessica Evans", plusOne: false, accommodation: false },
+        { name: "Mark Evans", plusOne: false, accommodation: false },
+        { name: "Lucy Williams", plusOne: false, accommodation: false },
+        { name: "Robert Smith", plusOne: false, accommodation: false },
+        // Add more guests here...
+      ];
 
-    // ─────────────────────────────────────────────────────────────
-    // RSVP SUBMISSION
-    //
-    // This demo stores the RSVP in localStorage so you can test it.
-    //
-    // FOR PRODUCTION on GitHub Pages, use ONE of:
-    //
-    // OPTION A — Google Apps Script (recommended, free, full control):
-    //   1. Create a Google Sheet for responses.
-    //   2. Tools → Apps Script → paste the script from rsvp-backend.gs
-    //   3. Deploy as a Web App (execute as: me, access: anyone)
-    //   4. Replace FORM_ENDPOINT below with your deployment URL.
-    //
-    // OPTION B — Netlify Forms (easiest):
-    //   1. Deploy the site to Netlify instead of GitHub Pages.
-    //   2. Add name="rsvp" data-netlify="true" to the form element.
-    //   3. Responses appear in the Netlify dashboard automatically.
-    //
-    // OPTION C — Formspree (free tier, no backend needed):
-    //   1. Create account at formspree.io
-    //   2. Replace FORM_ENDPOINT with your Formspree form URL.
-    // ─────────────────────────────────────────────────────────────
+      let currentGuest = null;
+      let isDeclined = false;
 
-    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzBkJBD75OSVNCa5WnzABl1uHUbJZ8KG_mdVxh4ERtah6cmGsDszIVIzLtMAVt3RXfB9w/exec';
+      function lookupGuest() {
+        const input = document.getElementById('guest-search').value.trim().toLowerCase();
+        const error = document.getElementById('lookup-error');
 
-    async function submitRsvp() {
-      const attendingEl = document.querySelector('input[name="attending"]:checked');
-      if (!attendingEl) {
-        document.getElementById('form-error').classList.add('show');
-        return;
-      }
-      document.getElementById('form-error').classList.remove('show');
+        // Fuzzy name match (first name, last name, or full)
+        const match = GUEST_LIST.find(g =>
+          g.name.toLowerCase() === input ||
+          g.name.toLowerCase().startsWith(input) ||
+          input.split(' ').every(part => g.name.toLowerCase().includes(part))
+        );
 
-      const attending = attendingEl.value === 'yes';
-      const plusOneAtt = document.querySelector('input[name="plus-one-att"]:checked');
+        if (!match) {
+          error.classList.add('show');
+          return;
+        }
+        error.classList.remove('show');
+        currentGuest = match;
 
-      const payload = {
-        name: currentGuest.name,
-        attending: attending,
-        meal: document.getElementById('meal-pref').value,
-        dietary: document.getElementById('dietary-notes').value,
-        message: document.getElementById('rsvp-message').value,
-        plusOneAllowed: currentGuest.plusOne,
-        plusOneAttending: plusOneAtt ? plusOneAtt.value === 'yes' : false,
-        plusOneName: document.getElementById('p1-name').value,
-        plusOneMeal: document.getElementById('p1-meal').value,
-        timestamp: new Date().toISOString()
-      };
+        // Show their name & form
+        document.getElementById('guest-name-display').textContent = match.name;
+        document.getElementById('rsvp-lookup').classList.add('hidden');
+        document.getElementById('rsvp-form-step').classList.remove('hidden');
 
-      const btn = document.getElementById('rsvp-submit-btn');
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-
-      try {
-        if (FORM_ENDPOINT !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-          const form = document.createElement('form');
-          form.method = 'POST';
-          form.action = FORM_ENDPOINT;
-          form.target = 'hidden_iframe';
-
-          Object.entries(payload).forEach(([key, value]) => {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = value;
-            form.appendChild(input);
-          });
-
-          document.body.appendChild(form);
-          form.submit();
-          document.body.removeChild(form);
-        } else {
-          // Demo mode: save to localStorage
-          const existing = JSON.parse(localStorage.getItem('rsvps') || '[]');
-          existing.push(payload);
-          localStorage.setItem('rsvps', JSON.stringify(existing));
-          console.log('RSVP saved (demo):', payload);
+        // Show / hide plus one block
+        if (match.plusOne) {
+          document.getElementById('plus-one-block').classList.remove('hidden');
         }
 
-        // Show confirmation
-        document.getElementById('rsvp-form-step').classList.add('hidden');
-        const conf = document.getElementById('rsvp-confirmation');
-        conf.classList.remove('hidden');
-        document.getElementById('confirmation-msg').textContent = attending
-          ? `We've received your RSVP and can't wait to celebrate with you on 14 June!`
-          : `We're sorry you can't make it. You'll be missed — thank you for letting us know.`;
-      } catch (e) {
-        btn.textContent = 'Submit RSVP';
-        btn.disabled = false;
-        alert('Something went wrong. Please try again or contact us directly.');
+        if (match.accommodation) {
+          document.getElementById('accommodation-block').classList.remove('hidden');
+        }
       }
-    }
 
-    // Allow Enter key on lookup field
-    document.getElementById('guest-search').addEventListener('keydown', e => {
-      if (e.key === 'Enter') lookupGuest();
-    });
-  </script>
+      function toggleDecline(declined) {
+        isDeclined = declined;
+        const fields = document.getElementById('attending-fields');
+        if (declined) {
+          fields.style.opacity = '0.4';
+          fields.style.pointerEvents = 'none';
+        } else {
+          fields.style.opacity = '1';
+          fields.style.pointerEvents = 'auto';
+        }
+      }
 
-  <iframe name="hidden_iframe" style="display:none"></iframe>
+      function togglePlusOneFields(show) {
+        const f = document.getElementById('plus-one-fields');
+        f.classList.toggle('hidden', !show);
+      }
+
+      // ─────────────────────────────────────────────────────────────
+      // RSVP SUBMISSION
+      //
+      // This demo stores the RSVP in localStorage so you can test it.
+      //
+      // FOR PRODUCTION on GitHub Pages, use ONE of:
+      //
+      // OPTION A — Google Apps Script (recommended, free, full control):
+      //   1. Create a Google Sheet for responses.
+      //   2. Tools → Apps Script → paste the script from rsvp-backend.gs
+      //   3. Deploy as a Web App (execute as: me, access: anyone)
+      //   4. Replace FORM_ENDPOINT below with your deployment URL.
+      //
+      // OPTION B — Netlify Forms (easiest):
+      //   1. Deploy the site to Netlify instead of GitHub Pages.
+      //   2. Add name="rsvp" data-netlify="true" to the form element.
+      //   3. Responses appear in the Netlify dashboard automatically.
+      //
+      // OPTION C — Formspree (free tier, no backend needed):
+      //   1. Create account at formspree.io
+      //   2. Replace FORM_ENDPOINT with your Formspree form URL.
+      // ─────────────────────────────────────────────────────────────
+
+      const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz4XczkJy4-Al4b4bLtaXwXNNXhcdJ4IQc2fwJCEMCODXQ5qv9qHBCIhKJKeU2On9FtDQ/exec';
+
+      async function submitRsvp() {
+        const attendingEl = document.querySelector('input[name="attending"]:checked');
+        if (!attendingEl) {
+          document.getElementById('form-error').classList.add('show');
+          return;
+        }
+        document.getElementById('form-error').classList.remove('show');
+
+        const attending = attendingEl.value === 'yes';
+        const plusOneAtt = document.querySelector('input[name="plus-one-att"]:checked');
+        const accommodationEl = document.querySelector('input[name="accommodation"]:checked');
+
+        const payload = {
+          name: currentGuest.name,
+          attending: attending,
+          // meal: document.getElementById('meal-pref').value,
+          dietary: document.getElementById('dietary-notes').value,
+          message: document.getElementById('rsvp-message').value,
+          plusOneAllowed: currentGuest.plusOne,
+          plusOneAttending: plusOneAtt ? plusOneAtt.value === 'yes' : false,
+          plusOneName: document.getElementById('p1-name').value,
+          // plusOneMeal: document.getElementById('p1-meal').value,
+          accommodation: accommodationEl ? accommodationEl.value : '',
+          timestamp: new Date().toISOString()
+        };
+
+        const btn = document.getElementById('rsvp-submit-btn');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+
+        try {
+          if (FORM_ENDPOINT !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = FORM_ENDPOINT;
+            form.target = 'hidden_iframe';
+
+            Object.entries(payload).forEach(([key, value]) => {
+              const input = document.createElement('input');
+              input.type = 'hidden';
+              input.name = key;
+              input.value = value;
+              form.appendChild(input);
+            });
+
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+          } else {
+            // Demo mode: save to localStorage
+            const existing = JSON.parse(localStorage.getItem('rsvps') || '[]');
+            existing.push(payload);
+            localStorage.setItem('rsvps', JSON.stringify(existing));
+            console.log('RSVP saved (demo):', payload);
+          }
+
+          // Show confirmation
+          document.getElementById('rsvp-form-step').classList.add('hidden');
+          const conf = document.getElementById('rsvp-confirmation');
+          conf.classList.remove('hidden');
+          document.getElementById('confirmation-msg').textContent = attending
+            ? `We've received your RSVP and can't wait to celebrate with you on 14 June!`
+            : `We're sorry you can't make it. You'll be missed — thank you for letting us know.`;
+        } catch (e) {
+          btn.textContent = 'Submit RSVP';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again or contact us directly.');
+        }
+      }
+
+      // Allow Enter key on lookup field
+      document.getElementById('guest-search').addEventListener('keydown', e => {
+        if (e.key === 'Enter') lookupGuest();
+      });
+    </script>
+
+    <iframe name="hidden_iframe" style="display:none"></iframe>
 </body>
 
 </html>
